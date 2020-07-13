@@ -1,12 +1,15 @@
 import React from 'react';
-import { makeStyles, Container} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Hero from './Hero';
+import Events from './Events';
 import CTA from './CTA';
 import Footer from './Footer';
-import Mentors from './Mentors'
-import OpenKnowledge from './OpenKnowledge';
-import OpenSource from './OpenSource';
+import StandForSection from './StandForView';
+import Team from './Team';
+import Promoters from './Promoters';
+import MentorExperience from './MentorExperience';
+import WatchOurVideoView from './WatchVideos';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -15,95 +18,82 @@ const useStyles = makeStyles(() => ({
 function HomeView() {
   const classes = useStyles();
 
-  const footerInfo = [
+  const experience = [
     {
-      id:1,
-      heading : 'Code for Cause',
-      column : [{
-        title : 'Blogs',
-        link : 'https://medium.com/code-for-cause'
-      }]
+      id: '1',
+      img: '/static/images/experience/students.svg',
+      count: '5000+',
+      title: 'Students'
     },
     {
-      id:2,
-      heading : 'Products',
-      column : [{
-        title : 'Events',
-        link : '#'
-      }]
+      id: '2',
+      img: '/static/images/experience/teaching_hours.svg',
+      count: '3200+',
+      title: ' Teaching Hours'
     },
     {
-      id:3,
-      heading : 'Contact Us',
-      column : [{
-        title : 'team@codeforcause.org',
-        link : '#'
-      }]
+      id: '3',
+      img: '/static/images/experience/projects.svg',
+      count: '1000+',
+      title: 'Projects'
+    },
+    {
+      id: '4',
+      img: '/static/images/experience/contributors.svg',
+      count: '100+',
+      title: 'Contributers'
     }
   ];
   const mentors = [
     {
-      id: '5e887a62195cc5aef7e8ca5d',
+      id: '1',
       name: 'Anuj Garg',
-      avatar: '/static/images/avatars/Anuj_garg.jpg',
-      cover: '/static/images/covers/cover_1.jpg',
-      designation: 'Senior Mentor',
-      skills: [
-        'User Experience',
-        'FrontEnd development',
-        'HTML5',
-        'VueJS',
-        'ReactJS'
-      ],
-      profile : 'Anuj is our beloved kung fu panda. He is a super energetic guy and radiates aspiration and motivation. He is Admin in Google Summer of Code and Google Code-in for multiple years. He has four years of experience of mentoring and training software developers and a will to utilise it to make a change in the world. He is famous for his unique way of teaching that imprints the concept to never be lost again.'
+      avatar: '/static/images/members/anuj.png',
+      linkedin: 'https://www.linkedin.com/in/keenwarrior/'
     },
     {
-      id: '5e887ac47eed253091be10cb',
+      id: '2',
       name: 'Gaurav Beriwal',
-      avatar: '/static/images/avatars/Gaurav_Beriwal.jpg',
-      cover: '/static/images/covers/cover_1.jpg',
-      designation: 'Kuch Marketing type role',
-      skills: [
-        'User Experience',
-        'FrontEnd development',
-        'HTML5',
-        'VueJS',
-        'ReactJS'
-      ],
-      profile : 'Gaurav has worked as a Co-founder and Founding Member of a tech startup and an internet-based service company, He has learned to bridge the gap across teams. He is Masters in Psychology and has been helping school kids as a Google Code-in mentor. Being a stage lover, he has represented in dozens of events and has been guiding youth alongside. Also, an analyst by passion.'
+      avatar: '/static/images/members/gaurav.png',
+      linkedin: 'https://www.linkedin.com/in/gauravberiwal/'
     },
     {
-      id: '5e86809283e28b96d2d38537',
+      id: '3',
       name: 'Kunal Kushwaha',
-      avatar: '/static/images/avatars/kunal_kush.jpg',
-      cover: '/static/images/covers/cover_2.jpg',
-      designation: 'Mentor',
-      skills: [
-        'User Experience',
-        'FrontEnd development',
-        'HTML5',
-        'VueJS',
-        'ReactJS'
-      ],
-      profile : 'Kunal is a super charged public speaker who loves to convey knowledge and is always up for a hot cup of Chai. He is a recognised mentor in Google Summer of Code, Google Code-In with JBoss Community. He is well versed in Java, Python, Web Development and Machine Learning. He loves to dwell in DevOps, Kubernetes, Cloud. He is Microsoft Student Partner and Python Mentor at AnitaB.org.'
+      avatar: '/static/images/members/kunal.png',
+      linkedin: 'https://www.linkedin.com/in/kunal-kushwaha/'
+    },
+    {
+      id: '4',
+      name: 'Ganga Chaturvedi',
+      avatar: '/static/images/members/ganga.png',
+      linkedin: 'https://www.linkedin.com/in/gangachatrvedi/'
+    },
+    {
+      id: '5',
+      name: 'Ekta Mishra',
+      avatar: '/static/images/members/ekta.png',
+      linkedin: 'https://www.linkedin.com/in/darecoder/'
+    },
+    {
+      id: '6',
+      name: 'Bharat Bhardwaj',
+      avatar: '/static/images/members/bharat.png',
+      linkedin: 'https://www.linkedin.com/in/bharatbbhardwaj/'
     }
   ];
-      
 
   return (
-    <Page
-      className={classes.root}
-      title="Code for Cause"
-    >
+    <Page className={classes.root} title="Code for Cause">
       <Hero />
-      <Container maxWidth="lg">
-      <OpenKnowledge />
-      <OpenSource />
-      </Container>
-      <Mentors mentors={mentors} />
-
-      <CTA/>
-      <Footer footerInfo={footerInfo}/>
+      <Promoters />
+      <Events id="events" />
+      <MentorExperience experience={experience} />
+      <StandForSection id="about" />
+      <Team id="team" mentors={mentors} />
+      <WatchOurVideoView />
+      <CTA id="actions" />
+      <Footer />
     </Page>
   );
 }

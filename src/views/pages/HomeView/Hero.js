@@ -4,21 +4,35 @@ import clsx from 'clsx';
 
 import {
   Box,
+  Button,
   Container,
   Grid,
+  Hidden,
   Typography,
   makeStyles
 } from '@material-ui/core';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
+const background = 'linear-gradient(270.72deg, #180255 0.25%, #000000 97.54%)';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.background.dark,
-    paddingTop: 40,
-    paddingBottom: 100,
+    color: '#FFF',
+    background,
+    paddingTop: 80,
+    paddingBottom: 60,
+    paddingLeft: 70,
+    paddingRight: 70,
     [theme.breakpoints.down('md')]: {
-      paddingTop: 40,
-      paddingBottom: 60
+      paddingLeft: 15,
+      paddingRight: 15
+    }
+  },
+  extraPadding: {
+    padding: '0 70px 0px 0px',
+    textAlign: 'justify',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0'
     }
   },
   image: {
@@ -26,146 +40,102 @@ const useStyles = makeStyles((theme) => ({
     transformStyle: 'preserve-3d',
     perspective: 1500,
     '& > img': {
-      maxWidth: '90%',
+      maxWidth: '100%',
       height: 'auto',
-      backfaceVisibility: 'hidden',
-      boxShadow: theme.shadows[16],
-      transform: 'rotateY(-35deg) rotateX(15deg)'
-    }
-  },
-  shape: {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    '& > img': {
-      maxWidth: '90%',
-      height: 'auto',
+      backfaceVisibility: 'hidden'
+    },
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      justifyContent: 'center'
     }
   },
   hide: {
-    display : 'none'
+    display: 'none'
+  },
+  Button: {
+    backgroundColor: '#A60000',
+    color: '#ffffff',
+    textTransform: 'capitalize',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    }
   }
 }));
 
 function Hero({ className, ...rest }) {
   const classes = useStyles();
 
-
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={3}
-        >
-          <Grid
-            item
-            xs={12}
-            md={5}
-          >
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
             <Box
               display="flex"
               flexDirection="column"
               justifyContent="center"
               height="100%"
+              className={clsx(classes.extraPadding, className)}
             >
               <Typography
-                variant="overline"
-                color="secondary"
+                variant="h4"
+                gutterBottom
+                style={{ color: '#A60000' }}
               >
                 Welcome to
               </Typography>
-              <Typography
-                variant="h1"
-                color="textSecondary"
-              >
-                Code for Cause
-              </Typography>
-              <Box mt={3}>
-                <Typography
-                  variant="body1"
-                  color="textSecondary"
-                >
-                  Code for Cause is an initiative to help the community by means of software.
-                  Our primary focus is to provide guidance and mentorship to students who lack it. Not only for those who lack on-campus opportunities but also for those who lack awareness about the possibilities in the software field. 
+              <Typography variant="h1">Code for Cause</Typography>
+              <Hidden mdUp>
+                <Box mt={6} mb={2}>
+                  <div className={classes.image}>
+                    <img
+                      alt="codeforcauseimg"
+                      src="/static/home/codeforcause.svg"
+                    />
+                  </div>
+                </Box>
+              </Hidden>
+              <Box mt={5}>
+                <Typography variant="body1">
+                  An initiative to help the community by providing training,
+                  guidance and awareness about the possibilities in the software
+                  field to students &amp; professionals.
                 </Typography>
               </Box>
-              <Box mt={3}>
-                <Grid
-                  container
-                  spacing={3}
-                >
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
+              <Box mt={4}>
+                <Grid container xs={12} md={12}>
+                  <Grid item xs={12} md={12}>
+                    <Button
+                      className={classes.Button}
+                      component="a"
+                      href="https://youtube.com/codeforcause"
+                      target="_blank"
+                      size="large"
+                      variant="contained"
                     >
-                      10+
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Projects
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
-                    >
-                      OSS
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Mindset
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
-                    >
-                      100+
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Contributers
-                    </Typography>
+                      <PlayArrowIcon style={{ paddingRight: 5 }} />
+                      Watch Our Videos
+                    </Button>
                   </Grid>
                 </Grid>
               </Box>
-           
             </Box>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={7}
-          >
-            <Box position="relative">
-            <div className={classes.shape}>
-                <img
-                  alt="Shapes"
-                  src="/static/home/shapes.svg"
-                />
-              </div>
-             
-              <div className={classes.image}>
-                <img
-                  alt="Presentation"
-                  src="/static/home/codeforcause.jpg"
-                />
-              </div>
-            </Box>
-          </Grid>
+          <Hidden smDown>
+            <Grid item xs={12} md={6}>
+              <Box>
+                <div className={classes.image}>
+                  <img
+                    alt="codeforcauseimg"
+                    src="/static/home/codeforcause.svg"
+                  />
+                </div>
+              </Box>
+            </Grid>
+          </Hidden>
         </Grid>
       </Container>
     </div>
